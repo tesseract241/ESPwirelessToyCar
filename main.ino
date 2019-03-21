@@ -35,13 +35,14 @@ void setup() {
   Serial.begin(115200);
   Serial.print("Configuring access point...");
   /* You can remove the password parameter if you want the AP to be open. */
-  WiFi.softAP(ssid, password);
+  WiFi.softAP(ssid, password, 1, 0, 1);
   IPAddress myIP = IPAddress(192,168,1,1);
-  IPAddress gatewayIP = IPAddress(192,168,1,1);
+  IPAddress gatewayIP = IPAddress(192,168,1,2);
   IPAddress subnetIP = IPAddress(255,255,255,0);
-  WiFi.config(myIP, gatewayIP, subnetIP);
+  Serial.print("Setting soft-AP configuration ... ");
+  Serial.println(WiFi.softAPConfig(myIP, gatewayIP, subnetIP) ? "Ready" : "Failed!");
   Serial.print("AP IP address: ");
-  Serial.println(myIP);
+  Serial.println(WiFi.softAPIP());
   server.begin();
   Serial.println("HTTP server started");
 
