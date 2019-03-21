@@ -96,32 +96,47 @@ void loop() {
     case 0:{
       leftMotor.setmotor(_CCW, 25);
       rightMotor.setmotor(_CW, 75);
+      Serial.println("Going forward left!");
+      break;
     }  
     case 1:{
       leftMotor.setmotor(_CCW, 50);
       rightMotor.setmotor(_CW, 50);
+      Serial.println("Going forward!");
+      break;
     }  
     case 2:{
       leftMotor.setmotor(_CCW, 75);
       rightMotor.setmotor(_CW, 25);
+      Serial.println("Going forward right!");
+      break;
     }  
     case 3:{
       leftMotor.setmotor(_STOP);
       rightMotor.setmotor(_STOP);
+      Serial.println("Stopping!");
+      break;
     }  
     case 4: {
       leftMotor.setmotor(_CW, 25);
       rightMotor.setmotor(_CCW, 75);
+      Serial.println("Going back left!");
+      break;
     }
     case 5: {
       leftMotor.setmotor(_CW, 75);
       rightMotor.setmotor(_CCW, 25);
+      Serial.println("Going back right!");
+      break;
     }
     case 6: {
       leftMotor.setmotor(_CW, 50);
       rightMotor.setmotor(_CCW, 50);
+      Serial.println("Going back!");
+      break;
     }
-    default:{     
+    default:{
+      Serial.println("Not a correct request, doing nothing...");     
     }
   }
 
