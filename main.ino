@@ -12,19 +12,15 @@
 #include <WiFiClient.h>
 #include <WEMOS_Motor.h>
 
-#ifndef STASSID
 #define STASSID "ESP8266_Network"
 #define STAPSK  "password"
-#endif
 
 const char* ssid = STASSID;
 const char* password = STAPSK;
 
-const int motorFrequency = 1000;
 
-
-Motor leftMotor(0x30, _MOTOR_A, motorFrequency);
-Motor rightMotor(0x30, _MOTOR_B, motorFrequency);
+Motor leftMotor(0x30, _MOTOR_A, 100);
+Motor rightMotor(0x30, _MOTOR_B, 100);
 
 // Create an instance of the server
 // specify the port to listen on as an argument
@@ -33,6 +29,8 @@ WiFiServer server(80);
 void setup() {
   leftMotor.setmotor(_STOP);
   rightMotor.setmotor(_STOP);
+  leftMotor.setmotor(_STANDBY);
+  rightMotor.setmotor(_STANDBY);
   delay(1000);
   Serial.begin(115200);
   Serial.print("Configuring access point...");
@@ -94,20 +92,20 @@ void loop() {
 
   switch(val){
     case 0:{
-      leftMotor.setmotor(_CCW, 25);
-      rightMotor.setmotor(_CW, 75);
+      leftMotor.setmotor(_CCW, 15);
+      rightMotor.setmotor(_CW, 25);
       Serial.println("Going forward left!");
       break;
     }  
     case 1:{
-      leftMotor.setmotor(_CCW, 50);
-      rightMotor.setmotor(_CW, 50);
+      leftMotor.setmotor(_CCW, 20);
+      rightMotor.setmotor(_CW, 20);
       Serial.println("Going forward!");
       break;
     }  
     case 2:{
-      leftMotor.setmotor(_CCW, 75);
-      rightMotor.setmotor(_CW, 25);
+      leftMotor.setmotor(_CCW, 25);
+      rightMotor.setmotor(_CW, 15);
       Serial.println("Going forward right!");
       break;
     }  
@@ -118,20 +116,20 @@ void loop() {
       break;
     }  
     case 4: {
-      leftMotor.setmotor(_CW, 25);
-      rightMotor.setmotor(_CCW, 75);
+      leftMotor.setmotor(_CW, 15);
+      rightMotor.setmotor(_CCW, 25);
       Serial.println("Going back left!");
       break;
     }
     case 5: {
-      leftMotor.setmotor(_CW, 75);
-      rightMotor.setmotor(_CCW, 25);
+      leftMotor.setmotor(_CW, 25);
+      rightMotor.setmotor(_CCW, 15);
       Serial.println("Going back right!");
       break;
     }
     case 6: {
-      leftMotor.setmotor(_CW, 50);
-      rightMotor.setmotor(_CCW, 50);
+      leftMotor.setmotor(_CW, 20);
+      rightMotor.setmotor(_CCW, 20);
       Serial.println("Going back!");
       break;
     }
