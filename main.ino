@@ -39,7 +39,7 @@ void setup() {
   /* You can remove the password parameter if you want the AP to be open. */
   WiFi.softAP(ssid, password);
   IPAddress myIP = IPAddress(192,168,1,1);
-  IPAddress gatewayIP = IPAddress(192,168,1,4);
+  IPAddress gatewayIP = IPAddress(192,168,1,1);
   IPAddress subnetIP = IPAddress(255,255,255,0);
   WiFi.config(myIP, gatewayIP, subnetIP);
   Serial.print("AP IP address: ");
@@ -70,18 +70,18 @@ void loop() {
 
   // Match the request
   int val;
-  if (req.indexOf(F("/leftForward")) != -1) {
+  if (req.indexOf(F("/forwardLeft")) != -1) {
     val = 0;
   } else if (req.indexOf(F("/forward")) != -1) {
     val = 1;
-  } else if (req.indexOf(F("/rightForward")) != -1) {
+  } else if (req.indexOf(F("/forwardRight")) != -1) {
     val = 2;
   } else if(req.indexOf(F("/stop")) != -1){
     val = 3;
-  } else if (req.indexOf(F("/leftBack")) != -1) {
+  } else if (req.indexOf(F("/backLeft")) != -1) {
     val = 4;
   }
-  else if (req.indexOf(F("/rightBack")) != -1) {
+  else if (req.indexOf(F("/backRight")) != -1) {
     val = 5;
   }
   else if (req.indexOf(F("/back")) != -1) {
